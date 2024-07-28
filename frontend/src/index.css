@@ -168,6 +168,10 @@ p {
     margin-bottom: var(--space-md);
 }
 
+.text-center {
+    text-align: center;
+}
+
 .full-h {
     height: 100%;
 }

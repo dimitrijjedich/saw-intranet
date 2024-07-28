@@ -1,22 +1,15 @@
 import { useEffect, useRef } from "react";
-import SomeOtherTestComponent from "./modules/SomeOtherTestComponent/SomeOtherTestcomponent";
-import Welcome from "./modules/welcome/Welcome";
 import { AppModuleNames, useAppStoreController } from "./utility/AppController";
 import { useWebSocketStore } from "./utility/AppWebSocket";
+import { getModuleByName, moduleRegestry } from "./modules/ModuleRegistry";
+import { useNavigate } from "react-router-dom";
 
 export default function ModuleDisplay() {
     const appController = useAppStoreController();
     const appSocketStore = useWebSocketStore();
 
-    function getCurrentModule(currentModule: AppModuleNames) {
-        switch (currentModule) {
-            case "welcome":
-                return <Welcome />;
-            case "test":
-                return <SomeOtherTestComponent />;
-            default:
-                return <Welcome />;
-        }
+    function getCurrentModule(currentModule: string) {
+        return getModuleByName(currentModule);
     }
 
     useEffect(() => {
@@ -32,14 +25,21 @@ export default function ModuleDisplay() {
 
 function ModuleDebugMenu() {
     const appController = useAppStoreController();
+    const navigate = useNavigate();
     const optionRef = useRef<HTMLSelectElement>(null);
-    const appModuleNamesAsArray: AppModuleNames[] = ["welcome", "test"];
+    const checkBoxRef = useRef<HTMLInputElement>(null);
 
     function swtichModule(): void {
+        if (!checkBoxRef.current?.value) {
+            // TODO: Implementieren, dass hier zu einer route navigiert wird, an der für Debugzwecke das Module aus den Queryparametern geladen wird, damit man einfach reloaden kann
+            return;
+        }
         appController.updateCurrentModule(
             optionRef.current?.value as AppModuleNames
         );
     }
+
+    const appModuleNamesAsArray = Object.keys(moduleRegestry);
 
     if (!appController.debugMode) {
         return null;
@@ -58,6 +58,8 @@ function ModuleDebugMenu() {
                     </option>
                 ))}
             </select>
+            <label htmlFor="queryParams">With query params</label>
+            <input ref={checkBoxRef} type="checkbox" id="queryParams" />
             <button type={"button"} onClick={swtichModule}>
                 Switch Module
             </button>
