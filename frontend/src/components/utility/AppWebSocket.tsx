@@ -1,5 +1,6 @@
 import { log } from "console";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import useWebSocket, { ReadyState, SendMessage } from "react-use-websocket";
 import { create } from "zustand";
 
@@ -74,9 +75,45 @@ export default function AppWebSocket(props: WebSocketProps) {
 
     return (
         <>
-            <div className="flex">{webSocketStore.status}</div>
+            <WebSocketDebug />
             {props.children}
         </>
+    );
+}
+
+function WebSocketDebug() {
+    const webSocketStore = useWebSocketStore();
+
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    if (searchParams.get("debug") !== "true") return null;
+
+    return (
+        <div
+            className="padded-small"
+            style={{ position: "absolute", top: "0" }}
+        >
+            <h5>Socket Debug:</h5>
+            <div className="flex flex-gap">
+                <div>
+                    <span>WebSocket Status: </span>
+                    <span
+                        style={{
+                            color:
+                                webSocketStore.status === "Open"
+                                    ? "var(--color-positive)"
+                                    : "var(color-primary)",
+                        }}
+                    >
+                        {webSocketStore.status}
+                    </span>
+                </div>
+                <div>
+                    <span>Last Message data: </span>
+                    <span>{webSocketStore.lastMessage?.data ?? ""}</span>
+                </div>
+            </div>
+        </div>
     );
 }
 

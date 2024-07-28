@@ -3,6 +3,7 @@ import SomeOtherTestComponent from "./modules/SomeOtherTestComponent/SomeOtherTe
 import Welcome from "./modules/welcome/Welcome";
 import { AppModuleNames, useAppStoreController } from "./utility/AppController";
 import { useWebSocketStore } from "./utility/AppWebSocket";
+import { useSearchParams } from "react-router-dom";
 
 export default function ModuleDisplay() {
     const appController = useAppStoreController();
@@ -29,28 +30,34 @@ export default function ModuleDisplay() {
         );
     }
 
-    function sendTestMessage(): void {
-        appSocketStore.sendMessage!(`Test message sent at ${Date.now()}`);
-    }
-
     useEffect(() => {
         console.log(appSocketStore.lastMessage);
     }, [appSocketStore.lastMessage]);
 
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    if (searchParams.get("debug") !== "true") return null;
+
     return (
         <>
-            <select ref={optionRef}>
-                {appModuleNamesAsArray.map((moduleName) => (
-                    <option key={moduleName} value={moduleName}>
-                        {moduleName}
-                    </option>
-                ))}
-            </select>
-            <button type={"button"} onClick={swtichModule}>
-                Switch Module
-            </button>
-            <button onClick={sendTestMessage}>Send Tetsmessage to WS</button>
             {getCurrentModule(appController.currentModule)}
+
+            <div
+                id="ModuleDebug"
+                className="padded-small"
+                style={{ position: "absolute", bottom: 0 }}
+            >
+                <select ref={optionRef}>
+                    {appModuleNamesAsArray.map((moduleName) => (
+                        <option key={moduleName} value={moduleName}>
+                            {moduleName}
+                        </option>
+                    ))}
+                </select>
+                <button type={"button"} onClick={swtichModule}>
+                    Switch Module
+                </button>
+            </div>
         </>
     );
 }

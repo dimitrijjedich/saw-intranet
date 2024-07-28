@@ -37,6 +37,7 @@ code {
     --color-accent: #ff3366;
     --color-light: #f4fffd;
     --color-tertiary: #65def1;
+    --color-positive: #00ff00;
 
     --bg-gradient: linear-gradient(
         343deg,
@@ -196,3 +197,14 @@ p {
     gap: var(--space-lg);
 }
 
+.padded-small {
+    padding: var(--space-sm);
+}
+
+.padded-medium {
+    padding: var(--space-md);
+}
+
+.padded-large {
+    padding: var(--space-lg);
+}
