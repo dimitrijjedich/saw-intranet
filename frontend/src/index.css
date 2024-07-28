@@ -16,6 +16,12 @@ html,
 body {
     height: 100%;
     width: 100%;
+    overflow: hidden;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
 }
 
 code {
@@ -161,8 +167,21 @@ p {
     margin-bottom: var(--space-md);
 }
 
+.full-h {
+    height: 100%;
+}
+
+.full-w {
+    width: 100%;
+}
+
 .flex {
     display: flex;
+}
+
+.flex-centerize {
+    align-items: center;
+    justify-content: center;
 }
 
 .flex-column {
@@ -172,3 +191,8 @@ p {
 .flex-gap {
     gap: var(--space-md);
 }
+
+.flex-gap-large {
+    gap: var(--space-lg);
+}
+
