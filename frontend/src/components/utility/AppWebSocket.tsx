@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useWebSocket, { ReadyState, SendMessage } from "react-use-websocket";
 import { create } from "zustand";
+import { useAppStoreController } from "./AppController";
 
 interface WebSocketProps {
     children: React.ReactNode;
@@ -83,10 +84,8 @@ export default function AppWebSocket(props: WebSocketProps) {
 
 function WebSocketDebug() {
     const webSocketStore = useWebSocketStore();
-
-    const [searchParams, setSearchParams] = useSearchParams();
-
-    if (searchParams.get("debug") !== "true") return null;
+    const { debugMode } = useAppStoreController();
+    if (!debugMode) return null;
 
     return (
         <div
