@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/event/{data}', function (string $data) {
+    (new \App\Events\MyEvent($data))->dispatch();
+    return "OK";
+});
