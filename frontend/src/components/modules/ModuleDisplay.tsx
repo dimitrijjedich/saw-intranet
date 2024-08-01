@@ -1,14 +1,14 @@
 import { useEffect, useRef } from "react";
-import { AppModuleNames, useAppStoreController } from "./utility/AppController";
-import { useWebSocketStore } from "./utility/AppWebSocket";
-import { getModuleByName, moduleRegestry } from "./modules/ModuleRegistry";
+import { AppModuleNames, useAppStoreController } from "../utility/AppController";
+import { useWebSocketStore } from "../utility/AppWebSocket";
+import {getModuleByName, ModuleNames, moduleRegestry} from "./ModuleRegistry";
 import { useNavigate } from "react-router-dom";
 
 export default function ModuleDisplay() {
     const appController = useAppStoreController();
     const appSocketStore = useWebSocketStore();
 
-    function getCurrentModule(currentModule: string) {
+    function getCurrentModule(currentModule: ModuleNames) {
         return getModuleByName(currentModule);
     }
 

@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import ModuleDisplay from "./ModuleDisplay";
+import ModuleDisplay from "./modules/ModuleDisplay";
 import { useAppStoreController } from "./utility/AppController";
 import AppWebSocket from "./utility/AppWebSocket";
 import { useEffect } from "react";

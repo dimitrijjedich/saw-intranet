@@ -18,6 +18,6 @@ Route::get('/', function () {
 });
 
 Route::get('/event/{data}', function (string $data) {
-    (new \App\Events\MyEvent($data))->dispatch();
+    (new \App\Events\MyEvent($data))->dispatch($data);
     return "OK";
 });
