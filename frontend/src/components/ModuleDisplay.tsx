@@ -12,9 +12,6 @@ export default function ModuleDisplay() {
         return getModuleByName(currentModule);
     }
 
-    useEffect(() => {
-        console.log(appSocketStore.lastMessage);
-    }, [appSocketStore.lastMessage]);
     return (
         <>
             {getCurrentModule(appController.currentModule)}

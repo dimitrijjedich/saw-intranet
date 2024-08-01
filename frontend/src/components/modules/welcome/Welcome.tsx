@@ -1,4 +1,5 @@
 import BaseModuleWrapper from "../../ui/BaseModuleWrapper/BaseModuleWrapper";
+import {useAppStoreController} from "../../utility/AppController";
 
 export default function Welcome() {
     return (

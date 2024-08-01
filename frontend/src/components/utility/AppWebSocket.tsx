@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom";
 import useWebSocket, { ReadyState, SendMessage } from "react-use-websocket";
 import { create } from "zustand";
 import { useAppStoreController } from "./AppController";
+import {debug} from "node:util";
 
 interface WebSocketProps {
     children: React.ReactNode;
@@ -40,12 +41,35 @@ const useWebSocketStore = create<WebSocketStore>((set) => ({
 export default function AppWebSocket(props: WebSocketProps) {
     const [socketUrl, setSocketUrl] = useState(props.socketUrl);
     const webSocketStore = useWebSocketStore();
+    const {debugMode} = useAppStoreController();
 
     // setting up the websocket connection
     const { sendMessage, lastMessage, readyState } = useWebSocket(
         socketUrl,
-        {}
+        {
+            queryParams: {
+                channel: "default",
+            },
+            onError: (event) => {
+                if (debugMode) console.error("Error", event);
+            },
+            onMessage: (event) => {
+                console.log("Message", event);
+                messageMiddleware(event);
+            },
+            onOpen: (event) => {
+                sendMessage('{"event":"pusher:subscribe","data":{"auth":"","channel":"my-channel"}}')
+            },
+        },
     );
+
+    const messageMiddleware = (event: MessageEvent<string>) => {
+        const data = JSON.parse(event.data);
+        console.log(data);
+        if (data.event.includes("pusher:ping")) {
+            sendMessage('{"event":"pusher:pong"}');
+        }
+    }
 
     // connect the sendMessage function to the store
     useEffect(() => {
@@ -61,7 +85,9 @@ export default function AppWebSocket(props: WebSocketProps) {
 
     // update the store with the connection status
     useEffect(() => {
-        console.log("readyState", connectionStatus as ConnectionStatus);
+        if (debugMode) {
+            console.log("Websocket::readyState", connectionStatus as ConnectionStatus);
+        }
         webSocketStore.setStatus(connectionStatus as ConnectionStatus);
     }, [readyState]);
 
