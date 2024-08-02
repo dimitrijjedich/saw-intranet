@@ -1,3 +1,34 @@
+## Setup
+
+1. Install dependencies for backend
+    ```bash
+    composer install
+    ```
+2. Copy .env.example
+    ```bash
+    cp .env.example .env
+    ```
+3. Run the migrations
+    ```bash
+    php artisan migrate
+    ```
+4. Install dependencies for frontend
+    ```bash
+    cd frontend
+    npm install
+    ```
+5. Copy images into `storage/app` when you want to run the seeders
+6. Run the seeder
+   ```bash
+   php artisan db:seed
+    ```
+
+
+## Launch the app
+```bash
+./launch-app.sh
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
