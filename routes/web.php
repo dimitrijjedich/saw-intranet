@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Quote;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,4 +21,15 @@ Route::get('/', function () {
 Route::get('/event/{data}', function (string $data) {
     (new \App\Events\MyEvent($data))->dispatch($data);
     return "OK";
+});
+
+Route::group(['prefix' => 'quote'], function () {
+    Route::get('/', function () {
+        return Quote::orderBy('created_at', 'DESC')->take(10)->get();
+    });
+
+    Route::get('/create/{data}', function (string $data) {
+        Quote::factory()->create(['quote'=>$data]);
+        return "OK";
+    });
 });
