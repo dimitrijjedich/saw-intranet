@@ -19,8 +19,9 @@ class PictureFactory extends Factory
     public function definition(): array
     {
         $files = array_diff(Storage::files(), array('.gitignore'));
-        $file = $files[array_rand($files)];
-        $name = bin2hex(random_bytes(50));
+        $fileName = $files[array_rand($files)];
+        $file = Storage::get($fileName);
+        $name = bin2hex(random_bytes(50)).'.'.array_slice(explode('.', $fileName), -1)[0];
         Storage::disk('public')->put($name, $file);
         return [
             'path' => Storage::url($name),
