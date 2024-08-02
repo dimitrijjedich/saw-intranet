@@ -1,4 +1,4 @@
-import Module404 from "./SomeOtherTestComponent/Module404";
+import Module404 from "./Module404";
 import Welcome from "./welcome/Welcome";
 import SomeOtherTestComponent from "./SomeOtherTestComponent/SomeOtherTestcomponent";
 

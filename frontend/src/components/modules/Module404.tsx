@@ -1,4 +1,4 @@
-import BaseModuleWrapper from "../../ui/BaseModuleWrapper/BaseModuleWrapper";
+import BaseModuleWrapper from "../ui/BaseModuleWrapper/BaseModuleWrapper";
 
 export default function Module404() {
     const blames: string[] = [
