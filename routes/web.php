@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\Picture;
 use App\Models\Quote;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +35,24 @@ Route::group(['prefix' => 'quote'], function () {
         Quote::factory()->create(['quote'=>$data]);
         return "OK";
     });
+});
+
+Route::group(['prefix' => 'picture'], function () {
+    Route::get('/', function () {
+        return Picture::orderBy('created_at', 'DESC')->take(10)->get();
+    });
+
+    Route::post('/create', function (Request $request) {
+        if (!$request->hasFile('file')) {
+            return response('No file found', 400);
+        }
+        $file = $request->file('file');
+        if (!$file->isValid()) {
+            return response('Invalid file upload', 400);
+        }
+        $name = bin2hex(random_bytes(50)). '.' . $request->file('file')->getClientOriginalExtension();
+        Storage::disk('public')->putFileAs('', $request->file('file'), $name);
+        Picture::create(['path' => Storage::url($name)]);
+        return "OK";
+    })->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 });
