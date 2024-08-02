@@ -1,13 +1,12 @@
 import { create } from "zustand";
+import {ModuleNames} from "../modules/ModuleRegistry";
 
 interface AppState {
-    currentModule: AppModuleNames;
-    updateCurrentModule: (newModule: AppModuleNames) => void;
+    currentModule: ModuleNames;
+    updateCurrentModule: (newModule: ModuleNames) => void;
     debugMode: boolean;
     setDebugMode: (debugMode: boolean) => void;
 }
-
-export type AppModuleNames = "welcome" | "test";
 
 const useAppStoreController = create<AppState>((set) => ({
     currentModule: "welcome",
