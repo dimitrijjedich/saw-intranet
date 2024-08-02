@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { AppModuleNames, useAppStoreController } from "../utility/AppController";
 import { useWebSocketStore } from "../utility/AppWebSocket";
-import {getModuleByName, ModuleNames, moduleRegestry} from "./ModuleRegistry";
+import {getModuleByName, ModuleNames, moduleRegistry} from "./ModuleRegistry";
 import { useNavigate } from "react-router-dom";
 
 export default function ModuleDisplay() {
@@ -36,7 +36,7 @@ function ModuleDebugMenu() {
         );
     }
 
-    const appModuleNamesAsArray = Object.keys(moduleRegestry);
+    const appModuleNamesAsArray = Object.keys(moduleRegistry);
 
     if (!appController.debugMode) {
         return null;
