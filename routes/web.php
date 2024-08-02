@@ -28,7 +28,7 @@ Route::group(['prefix' => 'quote'], function () {
         return Quote::orderBy('created_at', 'DESC')->take(10)->get();
     });
 
-    Route::get('/create/{data}', function (string $data) {
+    Route::post('/create/{data}', function (string $data) {
         Quote::factory()->create(['quote'=>$data]);
         return "OK";
     });
