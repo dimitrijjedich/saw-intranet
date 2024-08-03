@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Quote;
 use App\Models\User;
-use Database\Factories\QuoteFactory;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
