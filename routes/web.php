@@ -52,7 +52,7 @@ Route::group(['prefix' => 'picture'], function () {
         }
         $name = bin2hex(random_bytes(50)). '.' . $request->file('file')->getClientOriginalExtension();
         Storage::disk('public')->putFileAs('', $request->file('file'), $name);
-        Picture::create(['path' => Storage::url($name)]);
+        Picture::create(['path' => $name]);
         return "OK";
     })->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 });
