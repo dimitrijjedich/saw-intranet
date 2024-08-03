@@ -24,7 +24,7 @@ class PictureFactory extends Factory
         $name = bin2hex(random_bytes(50)).'.'.array_slice(explode('.', $fileName), -1)[0];
         Storage::disk('public')->put($name, $file);
         return [
-            'path' => Storage::url($name),
+            'path' => $name,
         ];
     }
 }
