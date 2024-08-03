@@ -29,6 +29,19 @@
 ./launch-app.sh
 ```
 
+## Calls to the API
+Once the app is up and running it is possible to generate new Models by making REST API calls. Here are the Options: 
+#### Create a Quote 
+```bash
+curl -X POST localhost:8000/quote/create/YOUR-TEXT-HERE
+```
+#### Create a Picture
+```bash
+curl -i -X POST -H "Content-Type: multipart/form-data" -F "file=@storage/app/duck.jpg" http://localhost:8000/picture/create
+```
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

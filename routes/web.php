@@ -34,7 +34,7 @@ Route::group(['prefix' => 'quote'], function () {
     Route::post('/create/{data}', function (string $data) {
         Quote::factory()->create(['quote'=>$data]);
         return "OK";
-    });
+    })->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 });
 
 Route::group(['prefix' => 'picture'], function () {
