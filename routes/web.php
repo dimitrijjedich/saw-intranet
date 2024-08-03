@@ -31,10 +31,10 @@ Route::group(['prefix' => 'quote'], function () {
         return Quote::orderBy('created_at', 'DESC')->take(10)->get();
     });
 
-    Route::post('/create/{data}', function (string $data) {
+    /*Route::post('/create/{data}', function (string $data) {
         Quote::factory()->create(['quote'=>$data]);
         return "OK";
-    })->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+    })->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);*/
 });
 
 Route::group(['prefix' => 'picture'], function () {
@@ -42,7 +42,7 @@ Route::group(['prefix' => 'picture'], function () {
         return Picture::orderBy('created_at', 'DESC')->take(10)->get();
     });
 
-    Route::post('/create', function (Request $request) {
+/*    Route::post('/create', function (Request $request) {
         if (!$request->hasFile('file')) {
             return response('No file found', 400);
         }
@@ -54,5 +54,5 @@ Route::group(['prefix' => 'picture'], function () {
         Storage::disk('public')->putFileAs('', $request->file('file'), $name);
         Picture::create(['path' => $name]);
         return "OK";
-    })->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+    })->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);*/
 });
