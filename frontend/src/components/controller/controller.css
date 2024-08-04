@@ -1,0 +1,18 @@
+.preview {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%) scale(.4) ;
+}
+
+
+.preview-container {
+    border-radius: var(--border-radius-lg);
+    border: var(--border);
+    position: relative;
+    width: 100%;
+    flex: 0 1 50%;
+
+}

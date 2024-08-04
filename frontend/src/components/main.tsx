@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import {Outlet, useSearchParams} from "react-router-dom";
 import ModuleDisplay from "./modules/ModuleDisplay";
 import { useAppStoreController } from "./utility/AppController";
 import AppWebSocket from "./utility/AppWebSocket";
@@ -18,7 +18,7 @@ export default function Main() {
 
     return (
         <AppWebSocket socketUrl={env.REACT_APP_PUBLIC_WEBSOCKET_URL! + env.REACT_APP_PUBLIC_WEBSOCKET_APP_KEY}>
-            <ModuleDisplay />
+            <Outlet></Outlet>
         </AppWebSocket>
     );
 }
