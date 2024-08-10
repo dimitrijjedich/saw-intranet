@@ -57,6 +57,13 @@ code {
     --border-radius-sm: 0.25rem;
     --border-radius-md: 0.5rem;
     --border-radius-lg: 1rem;
+
+    --border: 1px solid var(--color-primary);
+}
+
+.background-blur {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
 }
 
 *::selection {

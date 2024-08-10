@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { AppModuleNames, useAppStoreController } from "../utility/AppController";
+import {  useAppStoreController } from "../utility/AppController";
 import { useWebSocketStore } from "../utility/AppWebSocket";
 import {getModuleByName, ModuleNames, moduleRegistry} from "./ModuleRegistry";
 import { useNavigate } from "react-router-dom";
@@ -32,7 +32,7 @@ function ModuleDebugMenu() {
             return;
         }
         appController.updateCurrentModule(
-            optionRef.current?.value as AppModuleNames
+            optionRef.current?.value as ModuleNames
         );
     }
 
