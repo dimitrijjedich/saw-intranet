@@ -7,6 +7,9 @@
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 </head>
 <body>
+<input type="text" id="messageInput" placeholder="Enter your message">
+<button id="sendButton">Send</button>
+
 <h1>WebSocket Messages</h1>
 <div id="messages"></div>
 
@@ -50,6 +53,18 @@
                 console.error('Invalid event data:', e);
             }
         });
+
+    function sendMessage() {
+        const messageInput = document.getElementById('messageInput');
+        const message = messageInput.value;
+
+        pusher.send_event('client-my-event', {
+            message: message
+        });
+        messageInput.value = '';
+    }
+
+    document.getElementById('sendButton').addEventListener('click', sendMessage);
 </script>
 </body>
 </html>
