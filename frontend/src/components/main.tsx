@@ -3,6 +3,7 @@ import ModuleDisplay from "./modules/ModuleDisplay";
 import { useAppStoreController } from "./utility/AppController";
 import AppWebSocket from "./utility/AppWebSocket";
 import { useEffect } from "react";
+import Background from "./ui/Background/Background";
 
 export default function Main() {
     const appController = useAppStoreController();
@@ -19,6 +20,7 @@ export default function Main() {
     return (
         <AppWebSocket socketUrl={env.REACT_APP_PUBLIC_WEBSOCKET_URL! + env.REACT_APP_PUBLIC_WEBSOCKET_APP_KEY}>
             <Outlet></Outlet>
+            <Background></Background>
         </AppWebSocket>
     );
 }

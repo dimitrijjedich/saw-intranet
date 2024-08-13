@@ -1,0 +1,14 @@
+.background {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+
+:root {
+    --step1: linear-gradient(45deg, #020202, #0b0b0d, #111315, #15181b, #181e20, #181e20, #181e20, #181e20, #15181b, #111315, #0b0b0d, #020202);
+    --step2: linear-gradient(90deg, #020202, #0f0f11, #16191b, #1b2124, #202a2c, #202a2c, #202a2c, #202a2c, #1b2124, #16191b, #0f0f11, #020202);
+    --step3: linear-gradient(135deg, #020202, #090a0c, #0f1113, #121618, #151b1c, #151b1c, #151b1c, #151b1c, #121618, #0f1113, #090a0c, #020202);
+    --step4: linear-gradient(45deg, #020202, #0b0b0d, #111315, #15181b, #181e20, #181e20, #181e20, #181e20, #15181b, #111315, #0b0b0d, #020202);
+
+}

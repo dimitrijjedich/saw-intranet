@@ -3,7 +3,7 @@ import {  useAppStoreController } from "../utility/AppController";
 import { useWebSocketStore } from "../utility/AppWebSocket";
 import {getModuleByName, ModuleNames, moduleRegistry} from "./ModuleRegistry";
 import { useNavigate } from "react-router-dom";
-import {animated, AnimatedProps, useSpringRef, useTransition} from "@react-spring/web";
+import {animated, AnimatedProps, useSpringRef, useTransition, config} from "@react-spring/web";
 import "./moduleDispaly.css"
 
 export default function ModuleDisplay() {
@@ -15,9 +15,9 @@ export default function ModuleDisplay() {
         ref: transitionRef,
         keys: null,
         from: { Opacity: 0,  transform: "translateY(5%) rotate(1deg)" },
-        enter: { Opacity: 1, transform: "translateY(0) rotate(0deg)" },
+        enter: { Opacity: 1, transform: "translateY(0) rotate(0deg)", delay: 500 },
         leave: { Opacity: 0,  transform: "translateY(-5%) rotate(3deg)" },
-        config: { duration: 300, mass: 2, tension: 210, friction: 30 },
+        config: { ...config.molasses },
     });
 
     useEffect(() => {
@@ -30,7 +30,6 @@ export default function ModuleDisplay() {
     }
 
     return (<>
-
         <div className={'display-container'}>
             {transitions((styles, i) => {
                 return (
