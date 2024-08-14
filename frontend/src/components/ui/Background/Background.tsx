@@ -9,7 +9,7 @@ export default function Background() {
             {background: 'var(--step2)'},
             {background: 'var(--step3)'},
             {background: 'var(--step4)'}],
-        config: {...config.molasses, duration: 3000},
+        config: {...config.molasses, duration: 7000},
         loop: {reverse: true},
 
     }),
