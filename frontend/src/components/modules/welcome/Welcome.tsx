@@ -2,7 +2,6 @@ import BaseModuleWrapper from "../../ui/BaseModuleWrapper/BaseModuleWrapper";
 import {useAppStoreController} from "../../utility/AppController";
 import {useWebSocketStore} from "../../utility/AppWebSocket";
 import ConnectionDisplay from "../../ui/ConnectionDisplay";
-import Loader from "../../ui/loader/Loader";
 
 export default function Welcome() {
     const socketController = useWebSocketStore();
@@ -15,7 +14,7 @@ export default function Welcome() {
                     <h1>SW-Intranet</h1>
                     <h5>By Dimi und Moritz</h5>
                 </div>
-                <div>
+                <div className={'padded-small'} style={{border: 'var(--border)', borderRadius: 'var(--border-radius-lg)',}}>
                     <ConnectionDisplay status={socketController.status}/>
                 </div>
             </div>

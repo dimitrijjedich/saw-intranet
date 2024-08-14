@@ -21,7 +21,7 @@ export default function Module404() {
     return (
         <BaseModuleWrapper>
             <div className="flex flex-column flex-centerize flex-gap-large full-w full-h">
-                <h1>404</h1>
+                <h1 className="padded-large" style={{border: "var(--border)", borderRadius: "var(--border-radius-lg)"}}>404</h1>
                 <div>
                     <p className="text-center">Module not found</p>
                     <p>{getRandomBlame()}</p>
