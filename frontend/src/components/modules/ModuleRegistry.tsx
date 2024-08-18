@@ -1,14 +1,16 @@
 import Module404 from "./Module404";
 import Welcome from "./welcome/Welcome";
 import SomeOtherTestComponent from "./SomeOtherTestComponent/SomeOtherTestcomponent";
-import {JSX, ReactElement} from "react";
+import { JSX, ReactElement } from "react";
+import Dvd from "./dvd/dvd";
 
-export type ModuleNames = "welcome" | "test" | "404" ;
+export type ModuleNames = "welcome" | "test" | "404" | "dvd";
 
 const moduleRegistry: { [key in ModuleNames]: JSX.Element } = {
     welcome: <Welcome />,
     test: <SomeOtherTestComponent />,
-    404: <Module404 />
+    dvd: <Dvd />,
+    404: <Module404 />,
 };
 
 function getModuleByName(name: ModuleNames): ReactElement {
@@ -16,4 +18,4 @@ function getModuleByName(name: ModuleNames): ReactElement {
     return module ? module : <Module404 />;
 }
 
-export { moduleRegistry, getModuleByName};
+export { moduleRegistry, getModuleByName };
