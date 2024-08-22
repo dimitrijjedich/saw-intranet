@@ -1,8 +1,8 @@
 import { useSpring, animated } from "@react-spring/web";
 import "./dvd.css";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { ReactComponent as Blob} from "./blob.svg";
 
-type Color = "red" | "blue" | "green" | "yellow";
 
 type DvdProps = {};
 export default function Dvd(dvdProps: DvdProps) {
@@ -14,18 +14,16 @@ export default function Dvd(dvdProps: DvdProps) {
     const [xDirection, setXDirection] = useState(1);
     const [yDirection, setYDirection] = useState(1);
     const [lastBounce, setLastBounce] = useState(0);
-    const [color, setColor] = useState<Color>("red");
+    const [color, setColor] = useState<string>('#fbbd40');
     const size = 50;
     const animationFrameId = useRef<number | null>(null);
 
     const bounce = useCallback(() => {
         const now = Date.now();
-        if (now - lastBounce > 2500) {
+        if (now - lastBounce > 200) {
             console.log("bounce");
             setLastBounce(now);
-            const colors: Color[] = ["red", "blue", "green", "yellow"];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            setColor(randomColor);
+            setColor('#' + Math.floor(Math.random() * 16777215).toString(16));
         }
     }, [lastBounce]);
 
@@ -112,8 +110,6 @@ type DVDIconProps = {
 
 function DVDIcon(props: DVDIconProps) {
     return (
-        <svg className={props.className}>
-            <rect height={props.size} width={props.size} fill={props.color}></rect>
-        </svg>
+        <Blob width={props.size} height={props.size} className={props.className} fill={props.color}></Blob>
     );
 }
